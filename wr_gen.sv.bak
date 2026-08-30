@@ -1,0 +1,28 @@
+class wr_gen;
+wr_tx tx;
+	task run();
+	case (fifo_common::test_name)
+		"FULL":begin
+			writes(`FIFO_SIZE);
+		end
+		"EMPTY":begin
+		end
+		"OVERFLOW":begin
+		end
+		"UNDERFLOW":begin
+		end
+		"CONCURRENT":begin
+		end	
+	endcase
+	
+	endtask
+
+	task writes(input int N);
+		repeat(N)begin
+			tx=new();
+			tx.randomize();
+			tx.print("wr_gen");
+		end
+	endtask
+	
+endclass
